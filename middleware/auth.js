@@ -1,6 +1,6 @@
 
 const jwt = require('jsonwebtoken');
-const User = require('../model/user');
+const User = require('../models/user');
 require('dotenv').config();
 
 exports.authenticate = async (req, res, next) => {
@@ -9,7 +9,8 @@ exports.authenticate = async (req, res, next) => {
         const userData = jwt.verify(token, process.env.JWT_TOKEN);
         const user = await User.findById(userData.userId);
         if (user) {
-            req.userId = userData.userId;
+            // console.log(user);
+            req.user = user;
             next();
         }
     }

@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const userRoutes = require('./router/user');
+const pollRoutes = require('./router/poll');
 
 const app = express();
 const server = http.createServer(app);
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(userRoutes);
+app.use(pollRoutes);
 
 // app.use('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'index.html'))
