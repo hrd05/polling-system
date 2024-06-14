@@ -18,7 +18,7 @@ Authentication: JWT (JSON Web Tokens)
 
 Installation and Setup
 Clone the Repository
-git clone https://github.com/yourusername/polling-app.git
+git clone https://github.com/hrd05/polling-system
 
 Environment Variables
 Create a .env file in the root directory and add the following:
