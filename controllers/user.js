@@ -39,13 +39,17 @@ exports.loginUser = async (req, res) => {
 
     try {
         const user = await User.findOne({ email })
+        // console.log(user);
 
         if (!user) {
             return res.status(404).json({ message: 'User with this email does not exist' });
         }
         const result = await bcrypt.compare(password, user.password);
         if (result) {
-            return res.status(201).json({ message: 'User logged in Successfully', token: generateAccessToken(user._id.toString()) });
+            const userData = (await user.populate(['createdPolls', 'votedPolls']));
+            // console.log(data);
+
+            return res.status(201).json({ message: 'User logged in Successfully', token: generateAccessToken(user._id.toString()), userInfo: userData });
         }
         else {
             return res.status(401).json({ message: 'incorrect password' });

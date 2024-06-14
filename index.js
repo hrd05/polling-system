@@ -7,6 +7,7 @@ require('dotenv').config();
 
 const userRoutes = require('./router/user');
 const pollRoutes = require('./router/poll');
+const commentRoutes = require('./router/comment');
 
 const app = express();
 const server = http.createServer(app);
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(userRoutes);
 app.use(pollRoutes);
+app.use(commentRoutes);
 
 // app.use('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'index.html'))
