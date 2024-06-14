@@ -13,20 +13,22 @@ const app = express();
 const server = http.createServer(app);
 
 
-// const io = new Server(server);
+const io = new Server(server);
 
-// io.on('connection', (socket) => {
-//     // console.log('a user connected');
-// })
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+})
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(userRoutes);
-app.use(pollRoutes);
+app.use(pollRoutes(io));
 app.use(commentRoutes);
 
-// app.use('/', (req, res) => {
+// app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'index.html'))
 // })
 
